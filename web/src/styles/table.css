@@ -1,0 +1,22 @@
+.product-button {
+    border: none;
+    /* Remove border */
+    width: 100%;
+    /* Take full width */
+    height: 100%;
+    /* Take full height */
+    font-weight: bold;
+    /* Make text bold */
+}
+
+.modal-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex !important;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-end;
+}

@@ -1,0 +1,38 @@
+.product-table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+    table-layout: auto;
+    width: auto;
+}
+
+.product-cell {
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+.product-cell:hover .delete-button {
+    visibility: visible;
+}
+
+.product-cell .delete-button {
+    visibility: visible;
+}
+
+.delete-button {
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: large;
+    font-weight: bold;
+    background: none;
+    border: none;
+}

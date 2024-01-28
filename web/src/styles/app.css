@@ -1,0 +1,38 @@
+.nav-buttons {
+    display: inline-block;
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #00f708;
+    /* Green background */
+    color: #f8f8f8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center
+}
+
+.nav-buttons:nth-child(1) {
+    background-color: #3652AD;
+}
+
+.nav-buttons:nth-child(2) {
+    background-color: #FE7A36;
+
+}
+
+.nav-buttons:nth-child(3) {
+    background-color: #BF3131;
+
+}
+
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
