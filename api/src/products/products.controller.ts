@@ -25,6 +25,7 @@ export class ProductsController {
 
   @Get()
   findAll(@Query('category') category?: Category) {
+    console.log(category);
     return this.productsService.findAll(category);
   }
 

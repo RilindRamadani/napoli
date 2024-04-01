@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: daja-restaurant
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+    volumes:
+      - db:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ./api
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:admin@db:5432/daja-restaurant
+    ports:
+      - "3001:3001"
+    networks:
+      - my_network
+    command: npm run migrate
+  web:
+    build:
+      context: ./web
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+networks:
+  my_network:
+    driver: bridge
+volumes:
+  db: 
+    driver: local

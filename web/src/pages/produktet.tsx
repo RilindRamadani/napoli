@@ -3,9 +3,12 @@ import '../styles/produktet.css';
 import ProductTable from '../components/tables/product-table';
 import { Product } from '../common/types/product.model';
 
-async function fetchData() {
+
+
+async function fetchData(backendUrl: string) {
+
     try {
-        const response = await fetch('http://localhost:3001/products');
+        const response = await fetch(`${backendUrl}/products`);
         const data = await response.json();
 
         const mappedProducts: Product[] = data.map((product: any) => ({
@@ -20,42 +23,43 @@ async function fetchData() {
     }
 }
 
-async function addProduct(productData: any) {
-    try {
-        const response = await fetch('http://localhost:3001/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData),
-        });
 
-        if (!response.ok) {
-            throw new Error('Failed to add product');
-        } else {
-            console.log("AAAAAAAAAAAAA");
-        }
-
-        // Fetch the updated product list after the new product is added
-        const updatedProducts = await fetchData();
-        return updatedProducts;
-    } catch (error) {
-        console.error('Error adding product:', error);
-        throw error;
-    }
-}
 
 function Produktet() {
     const [products, setProducts] = useState<Product[]>([]);
     const [productName, setProductName] = useState('');
     const [selectedCategory, setSelectedCategory] = useState("Product Category");
+    const backendUrl = `${window.location.protocol}//${window.location.hostname}:3001`;
 
+    async function addProduct(productData: any) {
+        try {
+            const response = await fetch(`${backendUrl}/products`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productData),
+            });
 
+            if (!response.ok) {
+                throw new Error('Failed to add product');
+            } else {
+                console.log("AAAAAAAAAAAAA");
+            }
+
+            // Fetch the updated product list after the new product is added
+            const updatedProducts = await fetchData(backendUrl);
+            return updatedProducts;
+        } catch (error) {
+            console.error('Error adding product:', error);
+            throw error;
+        }
+    }
 
     useEffect(() => {
         const fetchDataAndSetProducts = async () => {
             try {
-                const fetchedProducts = await fetchData();
+                const fetchedProducts = await fetchData(backendUrl);
                 setProducts(fetchedProducts);
             } catch (error) {
                 // Handle the error if needed
@@ -63,7 +67,7 @@ function Produktet() {
         };
 
         fetchDataAndSetProducts();
-    }, []);
+    }, [backendUrl]);
 
     const handleCategoryChange = (e: any) => {
         setSelectedCategory(e.target.value);
@@ -71,14 +75,14 @@ function Produktet() {
 
     async function deleteProduct(productId: string) {
         try {
-            const response = await fetch(`http://localhost:3001/products/${productId}`, {
+            const response = await fetch(`${backendUrl}/products/${productId}`, {
                 method: 'DELETE',
             });
 
             if (!response.ok) {
                 throw new Error('Failed to delete product');
             }
-            const updatedProducts = await fetchData();
+            const updatedProducts = await fetchData(backendUrl);
             setProducts(updatedProducts);
         } catch (error) {
             console.error('Error deleting product:', error);

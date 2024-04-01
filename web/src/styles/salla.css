@@ -1,0 +1,8 @@
+.table-display-container {
+    /* height: 80vh; */
+    /* 80% of the viewport height */
+    /* overflow-y: auto; */
+    /* Add vertical scroll if content overflows */
+    padding-bottom: 50vh;
+    /* Padding equivalent to 20% of the viewport height */
+}

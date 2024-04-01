@@ -20,3 +20,53 @@
     height: 100vh;
     justify-content: flex-end;
 }
+
+.modal-content {
+    /* Add styles as needed */
+    margin-top: auto;
+    /* Push the modal content to the top of the modal */
+}
+
+.modal-body {
+    max-height: 70vh;
+    /* Set a maximum height for the modal body, adjust as needed */
+    overflow-y: auto;
+    /* Enable vertical scrolling for the modal body if content exceeds max height */
+}
+
+.modal-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.modal.modal-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1050; /* Adjust the z-index as needed */
+}
+
+.close-button{
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.pizza-modal-element-style {
+    background-color: var(--pizzaheaderbackground);
+    color: var(--pizzaheadercolor);
+}
+
+.banaku-modal-element-style {
+    background-color: var(--banakuheaderbackground);
+    color: var(--banakuheadercolor);
+}
+
+.kitchen-modal-element-style {
+    background-color: var(--kitchenheaderbackground);
+    color: var(--kitchenheadercolor);
+}
+
